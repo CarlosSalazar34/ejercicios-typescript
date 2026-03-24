@@ -85,8 +85,28 @@ class Coche{
         this.marca = marca;
         this.modelo = modelo;
     }
+
+    acelerar(): void{
+        console.log(`${this.marca} ${this.modelo} está acelerando...`);
+    };
+
+    frenar(): void{
+        console.log(`${this.marca} ${this.modelo} está frenando...`);
+    }
 }
 
+class CocheElectrico extends Coche{
+    bateria: number;
+    constructor(marca: string, modelo: string, bateria: number){
+        super(marca, modelo);
+        this.bateria = bateria;
+    }
+}
+
+const miCoche = new Coche("Toyota", "Corolla");
+miCoche.acelerar();
+const miCocheElectrico = new CocheElectrico("Tesla", "Model 3", 100);
+miCocheElectrico.acelerar();
 
 // 6. Genéricos: Crea una función genérica que tome un array de cualquier tipo y devuelva el primer
 //  elemento. Prueba con tipos específicos como number[] y string[].
