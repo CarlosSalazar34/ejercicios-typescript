@@ -28,14 +28,65 @@ console.log(`La longitud total es: ${longitudTotal(palabras, 2)}`);
 // 3. Arrays y Objetos: Crea un array de objetos con propiedades como nombre y edad. 
 // Filtra los objetos donde la edad sea mayor a 18 usando métodos de array.
 
+const personas = [
+    { nombre: " Ana", edad: 25},
+    { nombre: " Luis", edad: 17},
+    { nombre: " Marta", edad: 30},
+    { nombre: " Pedro", edad: 15}
+]
 
+const mayoresEdad = personas.filter(persona => persona.edad > 18);
+console.log("Personas mayores de edad:");
+mayoresEdad.forEach(persona => console.log(`${persona.nombre.trim()} tiene ${persona.edad} años`));
 
 // Nivel Intermedio
 // 4. Interfaces: Define una interfaz para un "Usuario" con propiedades nombre, email y opcional
 //  teléfono. Crea una función que valide si un objeto cumple con la interfaz.
 
+interface Usuario { 
+    nombre: string;
+    email: string;
+    telefono?: number;
+}
+
+const validar = (usuario: Usuario):void=>{ 
+    if (usuario.nombre && usuario.email && usuario.telefono) { 
+        console.log(`Usuario ${usuario.nombre} validado`)
+    }else{ 
+        console.log(`usuario no validado, faltan datos`)
+    }
+};
+
+const esUsuario = (obj: any): obj is Usuario=>{
+    return ( 
+        typeof obj.nombre === "string" && 
+        typeof obj.email === "string" && 
+        typeof obj.telefono === "number" || typeof obj.telefono === "undefined"
+    )
+}
+
+const user: Usuario = {
+    nombre: "Carlos",
+    email: "carlos@gmail.com",
+    telefono: 584242964319
+}
+
+validar(user);
+const result2 = esUsuario(user);
+console.log(result2);
+
 // 5. Clases: Implementa una clase "Coche" con propiedades marca, modelo y métodos para acelerar
 //  y frenar. Usa constructores y herencia para crear una subclase "CocheElectrico".
+
+class Coche{ 
+    marca: string;
+    modelo: string;
+    constructor(marca: string, modelo: string){
+        this.marca = marca;
+        this.modelo = modelo;
+    }
+}
+
 
 // 6. Genéricos: Crea una función genérica que tome un array de cualquier tipo y devuelva el primer
 //  elemento. Prueba con tipos específicos como number[] y string[].
