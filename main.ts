@@ -159,6 +159,36 @@ getData()
 // 9. Decoradores: Implementa un decorador simple que registre el tiempo de ejecución de una función. 
 // Aplícalo a una función que realice cálculos complejos.
 
+function medirFuncion(fn: Function) {
+    return (...args: any[]) => {
+        const inicio = performance.now();
+        const resultado = fn(...args);
+        const fin = performance.now();
+        console.log(`Ejecución: ${fin - inicio}ms`);
+        return resultado;
+    };
+}
+
+function sumaDos(a: number, b: number) {
+    return a + b;
+}
+
+const sumaConTimer = medirFuncion(sumaDos);
+sumaConTimer(5, 10);
+
+
 // 10. Tipos Avanzados: Usa tipos condicionales para crear un tipo que dependa de otro 
 // (ej: si es string, devuelve string; si es number, devuelve number). Crea un ejemplo con mapped types.
 
+type EsString<T> = T extends string ? "Es texto": "No es texto"
+
+type Prueba1 = EsString<string>; // Resultado: "ES_TEXTO"
+type Prueba2 = EsString<number>; 
+
+
+type SoloTextoNumero<T> = T extends string? string: T extends number? number : never;
+
+let pruebaUno:SoloTextoNumero<string> = 'hola carlos';
+let pruebaDos:SoloTextoNumero<number> = 23;
+
+console.log(pruebaDos, pruebaUno)
