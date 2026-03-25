@@ -111,6 +111,21 @@ miCocheElectrico.acelerar();
 // 6. Genéricos: Crea una función genérica que tome un array de cualquier tipo y devuelva el primer
 //  elemento. Prueba con tipos específicos como number[] y string[].
 
+const obtenerMayor = (array: any[]):number => { 
+    const mayores: number[] = []
+    array.forEach(data => { 
+        if (typeof data === "number" && data > 0){
+            mayores.push(data);
+        }
+    });
+    const result = Math.max(...mayores);
+    return result;
+}
+
+const array = [23, 24, Math.floor(Math.random() * 100), Math.floor(Math.random() * 100), 0];
+const mayor: number = obtenerMayor(array);
+console.log(mayor);
+
 // Nivel Avanzado
 // 7. Módulos: Divide tu código en módulos. Crea un módulo para utilidades matemáticas (suma, resta)
 //  y otro para validaciones. Importa y usa en un archivo principal.
