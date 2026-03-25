@@ -129,9 +129,32 @@ console.log(mayor);
 // Nivel Avanzado
 // 7. Módulos: Divide tu código en módulos. Crea un módulo para utilidades matemáticas (suma, resta)
 //  y otro para validaciones. Importa y usa en un archivo principal.
+import { resta } from "./calculos.ts";
+import { suma } from "./calculos.ts";
+
+const sum = suma(2, 3);
+const rest = resta(23, 3);
+console.log(`LA SUMA ES ${sum} y la resta es ${rest}`);
 
 // 8. Async/Await: Escribe una función asíncrona que simule una llamada a una API (usa setTimeout).
 //  Maneja errores con try/catch y devuelve datos tipados.
+
+async function getData():Promise<any[]> {
+    try{ 
+        const response = await fetch('https://randomuser.me/api');
+        if (!response.ok){
+            throw new Error("Error al consumir la api");
+        }
+        const data = await response.json();
+        return data;
+    }catch(error){ 
+        throw new Error("Error en la api");
+    }
+}
+
+getData()
+.then(data => console.log(data))
+.catch(error => console.log(error))
 
 // 9. Decoradores: Implementa un decorador simple que registre el tiempo de ejecución de una función. 
 // Aplícalo a una función que realice cálculos complejos.
