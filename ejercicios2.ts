@@ -4,6 +4,17 @@ const array: number[] = [...Array(10).keys()].map(() => {
 
 console.log("Original:", array);
 
+const voltearArray = (arr: number[]): number[]=>{
+    const volteado: number[] = [];
+    for(let i=arr.length-1; i>0;i--){
+        volteado.push(arr[i]);
+    };
+    return volteado;
+}
+
+const arrayVolteando = voltearArray(array);
+console.log("Array volteado", arrayVolteando);
+
 const maxValue = (arr: number[]): number => {
     let max = arr[0];
     for (let i = 1; i < arr.length; i++) { // Empezamos en 1 porque ya tenemos el 0
