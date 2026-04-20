@@ -9,8 +9,30 @@
     <main>
         <input type="text" class="nombre"/>
         <button class="btn">enviar</button>
-        
+        <button class="btn2">actualizar</button>
+        <div id="items"></div>
     </main>
-    <script src="main.ts"></script>
+    <script>
+        const btn = document.querySelector(".btn");
+        const updateBtn = document.querySelector(".btn2")
+        localStorage.setItem("nombre", JSON.stringify(["carlos", "juan"]));
+        btn.addEventListener("click", ()=>{
+            const items = JSON.parse(localStorage.getItem("nombre"));
+            items.forEach(element => {
+                const newElement = document.createElement("div");
+                newElement.textContent = element;
+                document.getElementById("items").appendChild(
+                    newElement
+                )
+            });
+        })
+
+        updateBtn.addEventListener("click", ()=>{
+            const items = JSON.parse(localStorage.getItem("nombre"));
+            const nameVal = document.querySelector(".nombre").value;
+            localStorage.setItem("nombre", JSON.stringify([...items, nameVal]))
+        })
+
+    </script>
 </body>
 </html>
